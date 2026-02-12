@@ -21,29 +21,34 @@ h1 {
 
 #container {
     position: relative;
-    height: 350px;
+    height: 400px;
     margin-top: 40px;
 }
 
 button {
-    font-size: 24px;
-    padding: 12px 26px;
     border-radius: 14px;
     border: none;
     cursor: pointer;
+    position: absolute;
+    transition: all 0.2s ease;
 }
 
 #yes {
     background-color: #ff4d6d;
     color: white;
+    left: 40%;
+    top: 45%;
+    font-size: 26px;
+    padding: 14px 30px;
 }
 
 #no {
     background-color: #adb5bd;
     color: black;
-    position: absolute;
-    left: 60%;
-    top: 50%;
+    left: 55%;
+    top: 55%;
+    font-size: 24px;
+    padding: 12px 26px;
 }
 
 #teddy {
@@ -59,21 +64,35 @@ button {
 
 <div id="container">
     <button id="yes" onclick="showTeddy()">Yes 💕</button>
-    <button id="no" onmouseover="moveButton()">No 💔</button>
+    <button id="no" onclick="noClicked()">No 💔</button>
 </div>
 
 <div id="teddy">
-    <img src="https://i.imgur.com/8RKXAIV.png" width="280"/>
-    <h2>Yay! You said YES 💐💖</h2>
+    <img src="https://images.unsplash.com/photo-1612197527086-7c6c8b3b09a4"
+         width="320"/>
+    <h2>You had no choice anyway 😄💐🍫</h2>
 </div>
 
 <script>
-function moveButton() {
+let noScale = 1.0;
+let yesScale = 1.0;
+
+function noClicked() {
     const noBtn = document.getElementById("no");
-    const maxX = 300;
-    const maxY = 200;
-    const x = Math.random() * maxX;
-    const y = Math.random() * maxY;
+    const yesBtn = document.getElementById("yes");
+
+    // Scale logic
+    noScale -= 0.12;
+    yesScale += 0.12;
+
+    if (noScale < 0.2) noScale = 0.2;
+
+    noBtn.style.transform = "scale(" + noScale + ")";
+    yesBtn.style.transform = "scale(" + yesScale + ")";
+
+    // Random movement
+    const x = Math.random() * 300;
+    const y = Math.random() * 200;
     noBtn.style.left = x + "px";
     noBtn.style.top = y + "px";
 }
@@ -88,4 +107,4 @@ function showTeddy() {
 </html>
 """
 
-components.html(html_code, height=650)
+components.html(html_code, height=700)

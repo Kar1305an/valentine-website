@@ -15,14 +15,15 @@ body {
 }
 
 h1 {
-    font-size: 48px;
+    font-size: 50px;
     color: #d63384;
+    margin-top: 20px;
 }
 
 #container {
     position: relative;
-    height: 400px;
-    margin-top: 40px;
+    height: 420px;
+    margin-top: 50px;
 }
 
 button {
@@ -30,13 +31,13 @@ button {
     border: none;
     cursor: pointer;
     position: absolute;
-    transition: all 0.2s ease;
+    transition: all 0.25s ease;
 }
 
 #yes {
     background-color: #ff4d6d;
     color: white;
-    left: 40%;
+    left: 38%;
     top: 45%;
     font-size: 26px;
     padding: 14px 30px;
@@ -53,14 +54,14 @@ button {
 
 #teddy {
     display: none;
-    margin-top: 30px;
+    margin-top: 40px;
 }
 </style>
 </head>
 
 <body>
 
-<h1>Will you be my Valentine? 💖</h1>
+<h1>orishalol will you be my vallentine? 💖</h1>
 
 <div id="container">
     <button id="yes" onclick="showTeddy()">Yes 💕</button>
@@ -68,8 +69,7 @@ button {
 </div>
 
 <div id="teddy">
-    <img src="https://images.unsplash.com/photo-1612197527086-7c6c8b3b09a4"
-         width="320"/>
+    <img src="https://i.imgur.com/4M7IWwP.png" width="320"/>
     <h2>You had no choice anyway 😄💐🍫</h2>
 </div>
 
@@ -81,18 +81,18 @@ function noClicked() {
     const noBtn = document.getElementById("no");
     const yesBtn = document.getElementById("yes");
 
-    // Scale logic
     noScale -= 0.12;
     yesScale += 0.12;
 
-    if (noScale < 0.2) noScale = 0.2;
+    if (noScale < 0.2) {
+        noScale = 0.2;
+    }
 
     noBtn.style.transform = "scale(" + noScale + ")";
     yesBtn.style.transform = "scale(" + yesScale + ")";
 
-    // Random movement
     const x = Math.random() * 300;
-    const y = Math.random() * 200;
+    const y = Math.random() * 220;
     noBtn.style.left = x + "px";
     noBtn.style.top = y + "px";
 }
@@ -107,4 +107,4 @@ function showTeddy() {
 </html>
 """
 
-components.html(html_code, height=700)
+components.html(html_code, height=750)

@@ -8,7 +8,8 @@ html_code = """
 <html>
 <head>
 <style>
-/* FULL PAGE BACKGROUND — ALWAYS PRESENT */
+
+/* ===== BACKGROUND ===== */
 body {
     margin: 0;
     padding: 0;
@@ -18,22 +19,27 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    overflow-x: hidden;
 }
 
-/* CONTENT LAYER */
+/* ===== OVERLAY ===== */
 .content {
     min-height: 100vh;
     text-align: center;
-    background-color: rgba(255, 240, 245, 0.75); /* soft overlay */
+    background-color: rgba(255, 240, 245, 0.75);
     padding-top: 30px;
 }
 
+/* ===== HEADER ===== */
 h1 {
-    font-size: 48px;
+    font-size: 46px;
     color: #d63384;
     margin-bottom: 20px;
+    letter-spacing: 1px;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.15);
 }
 
+/* ===== BUTTON AREA ===== */
 #container {
     position: relative;
     height: 420px;
@@ -41,22 +47,30 @@ h1 {
 }
 
 button {
-    border-radius: 14px;
+    border-radius: 16px;
     border: none;
     cursor: pointer;
     position: absolute;
-    transition: all 0.25s ease;
+    transition: all 0.3s ease;
 }
 
+/* YES BUTTON */
 #yes {
     background-color: #ff4d6d;
     color: white;
     left: 38%;
     top: 45%;
     font-size: 26px;
-    padding: 14px 30px;
+    padding: 14px 32px;
+    box-shadow: 0 0 0 rgba(255, 77, 109, 0.0);
 }
 
+#yes:hover {
+    box-shadow: 0 0 20px rgba(255, 77, 109, 0.7);
+    transform: scale(1.05);
+}
+
+/* NO BUTTON */
 #no {
     background-color: #adb5bd;
     color: black;
@@ -66,18 +80,60 @@ button {
     padding: 12px 26px;
 }
 
+/* ===== RESULT ===== */
 #result {
     display: none;
     margin-top: 30px;
+    animation: fadeInScale 0.8s ease forwards;
 }
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.85);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* ===== FLOATING HEARTS ===== */
+.heart {
+    position: fixed;
+    bottom: -10px;
+    font-size: 22px;
+    color: #ff6b81;
+    animation: floatUp 6s linear infinite;
+    opacity: 0.7;
+}
+
+@keyframes floatUp {
+    from {
+        transform: translateY(0) translateX(0);
+        opacity: 0.7;
+    }
+    to {
+        transform: translateY(-110vh) translateX(30px);
+        opacity: 0;
+    }
+}
+
 </style>
 </head>
 
 <body>
 
+<!-- FLOATING HEARTS -->
+<span class="heart" style="left: 10%; animation-delay: 0s;">💖</span>
+<span class="heart" style="left: 30%; animation-delay: 2s;">💕</span>
+<span class="heart" style="left: 50%; animation-delay: 1s;">💗</span>
+<span class="heart" style="left: 70%; animation-delay: 3s;">💘</span>
+<span class="heart" style="left: 90%; animation-delay: 1.5s;">❤️</span>
+
 <div class="content">
 
-<h1>orishalol will you be my vallentine? 💖</h1>
+<h1>Orishalol, will you be my Valentine? 💖</h1>
 
 <div id="container">
     <button id="yes" onclick="showResult()">Yes 💕</button>
@@ -87,7 +143,7 @@ button {
 <div id="result">
     <img src="https://i1.fnp.com/images/pr/uae/l/v20220829125106/mesmerising-flowers-and-chocolates-bouquet-with-teddy-bear_1.jpg"
          width="340"/>
-    <h2>You had no choice anyway 😄💐🍫</h2>
+    <h2>I knew you’d say yes 🧸💐🍫</h2>
 </div>
 
 </div>
@@ -124,4 +180,4 @@ function showResult() {
 </html>
 """
 
-components.html(html_code, height=950)
+components.html(html_code, height=1000)

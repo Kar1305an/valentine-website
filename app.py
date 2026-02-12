@@ -8,10 +8,11 @@ html_code = """
 <html>
 <head>
 <style>
+/* FULL PAGE BACKGROUND — ALWAYS PRESENT */
 body {
     margin: 0;
     padding: 0;
-    text-align: center;
+    min-height: 100vh;
     font-family: 'Comic Sans MS', cursive;
     background-image: url('https://pics.coloringsai.com/a-giant-teddy-bear-holding-a-bouquet-of-flowers-and-a-love-note-a-fun-valentines-day-coloring-page-for-kids-and-adults-coloring-page-1738318937022.png');
     background-size: cover;
@@ -19,9 +20,11 @@ body {
     background-repeat: no-repeat;
 }
 
-.overlay {
-    background-color: rgba(255, 240, 245, 0.85);
+/* CONTENT LAYER */
+.content {
     min-height: 100vh;
+    text-align: center;
+    background-color: rgba(255, 240, 245, 0.75); /* soft overlay */
     padding-top: 30px;
 }
 
@@ -72,7 +75,7 @@ button {
 
 <body>
 
-<div class="overlay">
+<div class="content">
 
 <h1>orishalol will you be my vallentine? 💖</h1>
 
@@ -121,4 +124,4 @@ function showResult() {
 </html>
 """
 
-components.html(html_code, height=900)
+components.html(html_code, height=950)

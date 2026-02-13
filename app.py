@@ -9,25 +9,21 @@ html_code = """
 <head>
 <style>
 
-/* ===== BACKGROUND ===== */
+/* ===== CLEAN GRADIENT BACKGROUND ===== */
 body {
     margin: 0;
     padding: 0;
     min-height: 100vh;
     font-family: 'Comic Sans MS', cursive;
-    background-image: url('https://pics.coloringsai.com/a-giant-teddy-bear-holding-a-bouquet-of-flowers-and-a-love-note-a-fun-valentines-day-coloring-page-for-kids-and-adults-coloring-page-1738318937022.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    background: linear-gradient(135deg, #ffe6f0, #ffd6e8, #ffcce0);
     overflow-x: hidden;
 }
 
-/* ===== OVERLAY ===== */
+/* ===== CONTENT LAYER ===== */
 .content {
     min-height: 100vh;
     text-align: center;
-    background-color: rgba(255, 240, 245, 0.75);
-    padding-top: 30px;
+    padding-top: 40px;
 }
 
 /* ===== HEADER ===== */
@@ -36,7 +32,7 @@ h1 {
     color: #d63384;
     margin-bottom: 20px;
     letter-spacing: 1px;
-    text-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    text-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
 /* ===== BUTTON AREA ===== */
@@ -62,11 +58,10 @@ button {
     top: 45%;
     font-size: 26px;
     padding: 14px 32px;
-    box-shadow: 0 0 0 rgba(255, 77, 109, 0.0);
 }
 
 #yes:hover {
-    box-shadow: 0 0 20px rgba(255, 77, 109, 0.7);
+    box-shadow: 0 0 20px rgba(255, 77, 109, 0.6);
     transform: scale(1.05);
 }
 
@@ -80,7 +75,7 @@ button {
     padding: 12px 26px;
 }
 
-/* ===== RESULT ===== */
+/* ===== RESULT IMAGE ===== */
 #result {
     display: none;
     margin-top: 30px;
@@ -103,7 +98,6 @@ button {
     position: fixed;
     bottom: -10px;
     font-size: 22px;
-    color: #ff6b81;
     animation: floatUp 6s linear infinite;
     opacity: 0.7;
 }
@@ -133,7 +127,7 @@ button {
 
 <div class="content">
 
-<h1>orishalol, will you be my Valentine? 💖</h1>
+<h1>orishalol, will you be my valentine? 💖</h1>
 
 <div id="container">
     <button id="yes" onclick="showResult()">Yes 💕</button>
@@ -141,8 +135,8 @@ button {
 </div>
 
 <div id="result">
-    <img src="https://i1.fnp.com/images/pr/uae/l/v20220829125106/mesmerising-flowers-and-chocolates-bouquet-with-teddy-bear_1.jpg"
-         width="340"/>
+    <img src="https://i.imgur.com/8RKXAIV.png" width="340"/>
+
     <h2>I knew you’d say yes 🧸💐🍫</h2>
 </div>
 

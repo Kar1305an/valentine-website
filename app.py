@@ -1,67 +1,173 @@
 import streamlit as st
-import random
+import streamlit.components.v1 as components
 
 st.set_page_config(page_title="Valentine 💘", layout="wide")
 
-# Initialize session state
-if "yes_clicked" not in st.session_state:
-    st.session_state.yes_clicked = False
-
-if "no_scale" not in st.session_state:
-    st.session_state.no_scale = 1.0
-
-if "yes_scale" not in st.session_state:
-    st.session_state.yes_scale = 1.0
-
-# Background & hearts via CSS
-st.markdown("""
+html_code = """
+<!DOCTYPE html>
+<html>
+<head>
 <style>
+
+/* Background */
 body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    font-family: 'Comic Sans MS', cursive;
     background: linear-gradient(135deg, #ffe6f0, #ffd6e8, #ffcce0);
+    overflow-x: hidden;
 }
-.big-font {
-    font-size: 46px !important;
-    color: #d63384;
+
+/* Content */
+.content {
+    min-height: 100vh;
     text-align: center;
+    padding-top: 40px;
 }
-div.stButton > button {
+
+h1 {
+    font-size: 46px;
+    color: #d63384;
+    letter-spacing: 1px;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* Button container */
+#container {
+    position: relative;
+    height: 420px;
+    margin-top: 40px;
+}
+
+button {
     border-radius: 16px;
-    font-size: 20px;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    transition: all 0.3s ease;
 }
+
+/* Yes button */
+#yes {
+    background-color: #ff4d6d;
+    color: white;
+    left: 38%;
+    top: 45%;
+    font-size: 26px;
+    padding: 14px 32px;
+}
+
+#yes:hover {
+    box-shadow: 0 0 20px rgba(255, 77, 109, 0.6);
+    transform: scale(1.05);
+}
+
+/* No button */
+#no {
+    background-color: #adb5bd;
+    color: black;
+    left: 55%;
+    top: 55%;
+    font-size: 24px;
+    padding: 12px 26px;
+}
+
+/* Result */
+#result {
+    display: none;
+    margin-top: 30px;
+    animation: fadeInScale 0.8s ease forwards;
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.85);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Floating hearts */
+.heart {
+    position: fixed;
+    bottom: -10px;
+    font-size: 22px;
+    animation: floatUp 6s linear infinite;
+    opacity: 0.7;
+}
+
+@keyframes floatUp {
+    from {
+        transform: translateY(0) translateX(0);
+        opacity: 0.7;
+    }
+    to {
+        transform: translateY(-110vh) translateX(30px);
+        opacity: 0;
+    }
+}
+
 </style>
-""", unsafe_allow_html=True)
+</head>
 
-# Floating hearts
-st.markdown("""
-<div style="position:fixed; bottom:0; left:10%; font-size:22px;">💖</div>
-<div style="position:fixed; bottom:0; left:30%; font-size:22px;">💕</div>
-<div style="position:fixed; bottom:0; left:50%; font-size:22px;">💗</div>
-<div style="position:fixed; bottom:0; left:70%; font-size:22px;">💘</div>
-<div style="position:fixed; bottom:0; left:90%; font-size:22px;">❤️</div>
-""", unsafe_allow_html=True)
+<body>
 
-st.markdown('<p class="big-font">Orishalol, will you be my Valentine? 💖</p>', unsafe_allow_html=True)
+<span class="heart" style="left: 10%; animation-delay: 0s;">💖</span>
+<span class="heart" style="left: 30%; animation-delay: 2s;">💕</span>
+<span class="heart" style="left: 50%; animation-delay: 1s;">💗</span>
+<span class="heart" style="left: 70%; animation-delay: 3s;">💘</span>
+<span class="heart" style="left: 90%; animation-delay: 1.5s;">❤️</span>
 
-if not st.session_state.yes_clicked:
+<div class="content">
 
-    col1, col2 = st.columns(2)
+<h1>Orishalol, will you be my Valentine? 💖</h1>
 
-    with col1:
-        if st.button("Yes 💕"):
-            st.session_state.yes_clicked = True
+<div id="container">
+    <button id="yes" onclick="showResult()">Yes 💕</button>
+    <button id="no" onclick="noClicked()">No 💔</button>
+</div>
 
-    with col2:
-        if st.button("No 💔"):
-            # Shrink No
-            st.session_state.no_scale -= 0.1
-            if st.session_state.no_scale < 0.3:
-                st.session_state.no_scale = 0.3
+<div id="result">
+    <img src="https://raw.githubusercontent.com/Kar1305an/valentine-website/main/teddy.jpeg" width="350"/>
+    <h2>I knew you'd say yes 🧸💐🍫</h2>
+</div>
 
-            # Grow Yes
-            st.session_state.yes_scale += 0.1
+</div>
 
-            st.rerun()
+<script>
+let noScale = 1.0;
+let yesScale = 1.0;
 
-else:
-    st.image("teddy.jpeg", width=350)
-    st.markdown("### I knew you'd say yes 🧸💐🍫")
+function noClicked() {
+    const noBtn = document.getElementById("no");
+    const yesBtn = document.getElementById("yes");
+
+    noScale -= 0.12;
+    yesScale += 0.12;
+
+    if (noScale < 0.2) noScale = 0.2;
+
+    noBtn.style.transform = "scale(" + noScale + ")";
+    yesBtn.style.transform = "scale(" + yesScale + ")";
+
+    const x = Math.random() * 300;
+    const y = Math.random() * 220;
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+}
+
+function showResult() {
+    document.getElementById("container").style.display = "none";
+    document.getElementById("result").style.display = "block";
+}
+</script>
+
+</body>
+</html>
+"""
+
+components.html(html_code, height=1000)

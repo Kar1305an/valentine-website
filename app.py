@@ -124,7 +124,7 @@ button {
 
 <div class="content">
 
-<h1>Orishalol, will you be my Valentine? 💖</h1>
+<h1> orishalol, will you be my valentine? 💖</h1>
 
 <div id="container">
     <button id="yes" onclick="showResult()">Yes 💕</button>
@@ -133,7 +133,7 @@ button {
 
 <div id="result">
     <img src="https://raw.githubusercontent.com/Kar1305an/valentine-website/main/teddy.jpeg" width="350"/>
-    <h2>I knew you'd say yes 🧸💐🍫</h2>
+    <h2>I knew you'd say yes🧸💐🍫</h2>
 </div>
 
 </div>

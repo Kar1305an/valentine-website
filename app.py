@@ -133,7 +133,7 @@ button {
 
 <div class="content">
 
-<h1>Orishalol, will you be my Valentine? 💖</h1>
+<h1>orishalol, will you be my Valentine? 💖</h1>
 
 <div id="container">
     <button id="yes" onclick="showResult()">Yes 💕</button>

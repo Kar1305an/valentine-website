@@ -136,7 +136,6 @@ button {
 
 <div id="result">
     <img src="https://i.imgur.com/8RKXAIV.png" width="340"/>
-
     <h2>I knew you’d say yes 🧸💐🍫</h2>
 </div>
 
